@@ -1,49 +1,54 @@
-straight 300 (5 x 7 mm Cat6 as 3+2)
-  [OK ] seated: cover and base do not intersect                                 0.00 mm3
-  [OK ] seated + cover shifted 0.1 sideways: still free (lateral play exists)      0.00 mm3
-  [OK ] cover lifted 0.4: bumps collide (cover is retained)                    61.97 mm3
-        bump overlap measured from the collision: 0.60 mm per side (design 0.60)
+straight 300 (5 x 7 mm Cat6 as 3+2)  [relaxed geometry: preload 0, faces touching]
+  [OK ] seated: cover and base do not intersect (faces touch, no overlap)       0.00 mm3
+  [OK ] cover lifted 0.3: hooks collide (cover is retained)                    98.94 mm3
+        hook overlap measured from the collision: 0.75 mm per side (design 0.75 relaxed)
   [OK ] cover raised 6.5 (bumps above each other's ramps): free to start snap      0.00 mm3
   [OK ] cable bundle box inside the assembled raceway                           0.00 mm3
   [OK ] end cap plug clear of base + cover at the run end                       0.00 mm3
   [OK ] end cap stays inside the cover's outer outline                          0.00 mm3
-  [OK ] end cap face fills the outline (gap < chamfer volume)                 -47.30 mm3
+  [OK ] end cap face fills the outline (gap < chamfer volume)                 -47.27 mm3
   [OK ] driver access to screw at y=50 (open base)                              0.00 mm3
+  [OK ] #6 flat head seats fully in the pad countersink at y=50                 0.00 mm3
   [OK ] driver access to screw at y=150 (open base)                             0.00 mm3
+  [OK ] #6 flat head seats fully in the pad countersink at y=150                0.00 mm3
   [OK ] driver access to screw at y=250 (open base)                             0.00 mm3
-        leg flex during snap-on: 0.60 mm over a 14.5 mm leg -> 0.68% strain (ok for PLA/PETG)
-flat elbow
-  [OK ] seated: cover and base do not intersect                                 0.00 mm3
-  [OK ] seated + cover shifted 0.1 sideways: still free (lateral play exists)      0.00 mm3
-  [OK ] cover lifted 0.4: bumps collide (cover is retained)                    22.72 mm3
-        bump overlap measured from the collision: 0.60 mm per side (design 0.60)
+  [OK ] #6 flat head seats fully in the pad countersink at y=250                0.00 mm3
+  [OK ] base floor solid at both ends (end-cap plug seats on it)                0.00 mm3
+flat elbow  [relaxed geometry: preload 0, faces touching]
+  [OK ] seated: cover and base do not intersect (faces touch, no overlap)       0.00 mm3
+  [OK ] cover lifted 0.3: hooks collide (cover is retained)                    36.28 mm3
+        hook overlap measured from the collision: 0.75 mm per side (design 0.75 relaxed)
   [OK ] cover raised 6.5 (bumps above each other's ramps): free to start snap      0.00 mm3
   [OK ] cable bundle box inside the assembled raceway                           0.00 mm3
-inside corner (cover over two stubs)
-  [OK ] seated: cover and base do not intersect                                 0.00 mm3
-  [OK ] seated + cover shifted 0.1 sideways: still free (lateral play exists)      0.00 mm3
-  [OK ] cover lifted 0.4: bumps collide (cover is retained)                    23.05 mm3
-        bump overlap measured from the collision: 0.60 mm per side (design 0.60)
+inside corner (cover over two stubs)  [relaxed geometry: preload 0, faces touching]
+  [OK ] seated: cover and base do not intersect (faces touch, no overlap)       0.00 mm3
+  [OK ] cover lifted 0.3: hooks collide (cover is retained)                    36.93 mm3
+        hook overlap measured from the collision: 0.75 mm per side (design 0.75 relaxed)
   [OK ] cover raised 6.5 (bumps above each other's ramps): free to start snap      0.00 mm3
   [OK ] cable bundle box inside the assembled raceway                           0.00 mm3
   [OK ] inside corner: the two base stubs meet at the mitre without overlapping      0.00 mm3
-outside corner (cover over two stubs)
-  [OK ] seated: cover and base do not intersect                                 0.00 mm3
-  [OK ] seated + cover shifted 0.1 sideways: still free (lateral play exists)      0.00 mm3
-  [OK ] cover lifted 0.4: bumps collide (cover is retained)                    26.52 mm3
-        bump overlap measured from the collision: 0.60 mm per side (design 0.60)
+outside corner (cover over two stubs)  [relaxed geometry: preload 0, faces touching]
+  [OK ] seated: cover and base do not intersect (faces touch, no overlap)       0.00 mm3
+  [OK ] cover lifted 0.3: hooks collide (cover is retained)                    42.22 mm3
+        hook overlap measured from the collision: 0.75 mm per side (design 0.75 relaxed)
   [OK ] cover raised 6.5 (bumps above each other's ramps): free to start snap      0.00 mm3
   [OK ] cable bundle box inside the assembled raceway                           0.00 mm3
   [OK ] outside corner: stubs meet at the mitre without overlapping             0.00 mm3
+straight 300  [real geometry: preload 0.10, hook 20 deg, vert -0.05]
+  [OK ] seated interference is small (< 82 mm3 designed preload sliver)       -54.02 mm3
+  [OK ] interference confined to the snap zone z 2.88..4.84   (found z 3.61..4.10)
+  [OK ] interference only outboard of the cover bump tips |x| >= 14.05   (found |x| >= 14.05)
+  [OK ] cover ramp reaches below the bump tip (lead-in exists)                 -0.35 mm3
+leg strain (cantilever 14.8 mm, 1.2 thick): snap-on 0.85 mm -> 0.70% (ok for PLA/PETG); resting preload 0.24 mm -> 0.20% (ok, no creep)
 printability (exported STLs)
-  corner_inside_base_stub.stl    watertight=True   bed contact    1607 mm2   steep overhang    0.0 mm2   flat underside    83.9 mm2 (span ~28.5)
-  corner_inside_cover.stl        watertight=True   bed contact     224 mm2   steep overhang    0.0 mm2   flat underside  1486.1 mm2 (span ~28.8)
-  corner_outside_base_stub.stl   watertight=True   bed contact    1607 mm2   steep overhang    0.0 mm2   flat underside    96.1 mm2 (span ~28.5)
-  corner_outside_cover.stl       watertight=True   bed contact    2700 mm2   steep overhang    0.0 mm2   flat underside   110.9 mm2 (span ~28.8)
-  elbow_flat_base.stl            watertight=True   bed contact    2945 mm2   steep overhang    0.0 mm2   flat underside   165.0 mm2 (span ~69.2)
-  elbow_flat_cover.stl           watertight=True   bed contact    4200 mm2   steep overhang    0.0 mm2   flat underside   210.0 mm2 (span ~84.4)
-  end_cap.stl                    watertight=True   bed contact     318 mm2   steep overhang    0.0 mm2   flat underside   260.7 mm2 (span ~20.0)
-  straight_base_150.stl          watertight=True   bed contact    4037 mm2   steep overhang    0.0 mm2   flat underside   225.0 mm2 (span ~28.5)
-  straight_base_300.stl          watertight=True   bed contact    8062 mm2   steep overhang    0.0 mm2   flat underside   450.0 mm2 (span ~28.5)
-  straight_cover_300.stl         watertight=True   bed contact    9000 mm2   steep overhang    0.0 mm2   flat underside   450.0 mm2 (span ~28.8)
+  corner_inside_base_stub.stl    watertight=True   bed   1347 mm2   steep overhang    0.0 mm2   hook ledge   89.6 mm2   flat underside     0.0 mm2 (span ~0.0)
+  corner_inside_cover.stl        watertight=True   bed    168 mm2   steep overhang    0.0 mm2   hook ledge    0.0 mm2   flat underside  1515.5 mm2 (span ~29.6)
+  corner_outside_base_stub.stl   watertight=True   bed   1347 mm2   steep overhang    0.0 mm2   hook ledge  101.9 mm2   flat underside     0.0 mm2 (span ~0.0)
+  corner_outside_cover.stl       watertight=True   bed   2736 mm2   steep overhang    0.0 mm2   hook ledge  117.9 mm2   flat underside     0.0 mm2 (span ~0.0)
+  elbow_flat_base.stl            watertight=True   bed   2682 mm2   steep overhang    0.0 mm2   hook ledge  175.6 mm2   flat underside     0.0 mm2 (span ~0.0)
+  elbow_flat_cover.stl           watertight=True   bed   4256 mm2   steep overhang    0.0 mm2   hook ledge  223.5 mm2   flat underside     0.0 mm2 (span ~0.0)
+  end_cap.stl                    watertight=True   bed    589 mm2   steep overhang    0.0 mm2   hook ledge    0.0 mm2   flat underside     0.0 mm2 (span ~0.0)
+  straight_base_150.stl          watertight=True   bed   2711 mm2   steep overhang    0.0 mm2   hook ledge  239.4 mm2   flat underside     0.0 mm2 (span ~0.0)
+  straight_base_300.stl          watertight=True   bed   5072 mm2   steep overhang    0.0 mm2   hook ledge  478.9 mm2   flat underside     0.0 mm2 (span ~0.0)
+  straight_cover_300.stl         watertight=True   bed   9120 mm2   steep overhang    0.0 mm2   hook ledge  478.9 mm2   flat underside     0.0 mm2 (span ~0.0)
 ALL PASS
