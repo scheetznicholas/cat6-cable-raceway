@@ -1,0 +1,76 @@
+stub profile vs straight_base
+  [OK ] stub outer profile identical to straight_base above the plate face      0.00 mm3
+  [OK ] stub floor is the plate (solid right up to the interior floor)          0.00 mm3
+bottom-entry plate + matched cover  [relaxed geometry: preload 0, faces touching]
+  [OK ] seated: cover and plate do not intersect (faces touch, no overlap)      0.00 mm3
+  [OK ] cover lifted 0.3: hooks collide (cover is retained)                    37.30 mm3
+  [OK ] cover raised 6.5: free to start the snap                                0.00 mm3
+  [OK ] cover legs land on the plate face (material just above it)            123.94 mm3
+  [OK ] cover legs do not foul the plate (nothing below the plate face)         0.00 mm3
+  [OK ] 5-cable bundle clears the ramp crest (cables passing straight through)      0.00 mm3
+  [OK ] 5-cable bundle clears the plate floor away from the ramps               0.00 mm3
+side-entry plate + matched cover  [relaxed geometry: preload 0, faces touching]
+  [OK ] seated: cover and plate do not intersect (faces touch, no overlap)      0.00 mm3
+  [OK ] cover lifted 0.3: hooks collide (cover is retained)                    22.64 mm3
+  [OK ] cover raised 6.5: free to start the snap                                0.00 mm3
+  [OK ] cover legs land on the plate face (material just above it)             81.26 mm3
+  [OK ] cover legs do not foul the plate (nothing below the plate face)         0.00 mm3
+  [OK ] 5-cable bundle clears the ramp crest (cables passing straight through)      0.00 mm3
+        (no flat floor to check: ramps run to within 1.0 mm of the plate edge)
+  [OK ] matched cover's end wall fills the profile above the plate face         0.00 mm3
+        (kit end_cap fouls the plate's thicker floor by 190 mm3 -- by design, the plate uses the closed-end cover instead)
+  [OK ] matched cover's end wall fills the profile above the plate face         0.00 mm3
+        (kit end_cap fouls the plate's thicker floor by 364 mm3 -- by design, the plate uses the closed-end cover instead)
+bottom-entry plate  [real geometry: preload 0.10, hook 20 deg, vert -0.05]
+  [OK ] seated interference is small (< 31 mm3 designed preload sliver)       -20.69 mm3
+  [OK ] interference confined to the snap zone z 2.88..4.84   (found z 3.61..4.10)
+  [OK ] interference only outboard of the cover bump tips |x| >= 14.05   (found |x| >= 14.05)
+plate / sleeve / drywall
+  [OK ] cable hole is open right through the plate                              0.00 mm3
+  [OK ] nothing blocks the path from the channel, through the plate and sleeve, into the bay      0.00 mm3
+  [OK ] plate covers the cutout everywhere EXCEPT the cable hole                0.00 mm3
+  [OK ] no cut gypsum is left uncovered (the ring from the bore out to the cut edge)      0.00 mm3
+  [OK ] plate overlaps the cut edge by 7.5 mm on the tight axis
+  [OK ] sleeve body passes into the cutout (0.3 mm per side)                    0.00 mm3
+  [OK ] sleeve lip is wider than the cutout (cannot fall into the cavity)     657.94 mm3
+  [OK ] sleeve lip sits inside the plate's groove (no interference)             0.00 mm3
+  [OK ] sleeve lip is captured by the groove (groove deeper and wider than the lip)      0.00 mm3
+  [OK ] cable hole is inside the sleeve bore (cables never touch cut gypsum)      0.00 mm3
+  [OK ] clamp screw at y=+52.5 passes through intact board, not the cutout      0.00 mm3
+  [OK ] clamp screw at y=+52.5 clears the sleeve and its groove                 0.00 mm3
+  [OK ] clamp screw at y=-52.5 passes through intact board, not the cutout      0.00 mm3
+  [OK ] clamp screw at y=-52.5 clears the sleeve and its groove                 0.00 mm3
+  [OK ] M3 countersunk head seats flush in the plate                            0.00 mm3
+  [OK ] plate left under the countersink: 0.90 mm
+  [OK ] driver access to the clamp screw down the open stub                     0.00 mm3
+  [OK ] side-entry plate: cable hole is open right through it too               0.00 mm3
+  [OK ] side-entry plate: its hole is inside the sleeve bore as well            0.00 mm3
+  [OK ] backing bar 50.0 x 17.7 passes through the 54.8 x 92.1 cutout
+  [OK ] real M3 nut (5.5 AF x 2.4) seats in the pocket, gripped by the pips: 1.53 mm3 designed interference
+backing bar on 1/2 in board (12.7 mm)
+  [OK ] 1/2 in: bar does not intersect the board                                0.00 mm3
+  [OK ] 1/2 in: bar does not intersect the sleeve (hook slot clears the wall)      0.00 mm3
+  [OK ] 1/2 in: bar can be hooked on from behind (3 mm back: clear of sleeve and board)      0.00 mm3
+  [OK ] 1/2 in: rib stops the bar sliding 1 mm away from the cutout            48.00 mm3
+  [OK ] 1/2 in: keyed - 4 deg rotation about the screw collides with the sleeve     69.43 mm3
+  [OK ] 1/2 in: bar clamps 691 mm2 of intact board (1382 mm2 for the pair)
+  [OK ] 1/2 in: screw must reach 21.5 mm -> an M3 x 30 ends 8.5 mm past the nut
+  [OK ] 1/2 in: sleeve protrudes 6.3 mm past the board's back face (hook ribs are 2.0 deep)
+backing bar on 5/8 in board (15.9 mm)
+  [OK ] 5/8 in: bar does not intersect the board                                0.00 mm3
+  [OK ] 5/8 in: bar does not intersect the sleeve (hook slot clears the wall)      0.00 mm3
+  [OK ] 5/8 in: bar can be hooked on from behind (3 mm back: clear of sleeve and board)      0.00 mm3
+  [OK ] 5/8 in: rib stops the bar sliding 1 mm away from the cutout            48.00 mm3
+  [OK ] 5/8 in: keyed - 4 deg rotation about the screw collides with the sleeve     54.88 mm3
+  [OK ] 5/8 in: bar clamps 691 mm2 of intact board (1382 mm2 for the pair)
+  [OK ] 5/8 in: screw must reach 24.7 mm -> an M3 x 30 ends 5.3 mm past the nut
+  [OK ] 5/8 in: sleeve protrudes 3.1 mm past the board's back face (hook ribs are 2.0 deep)
+printability (exported STLs)
+  wallplate_entry_bottom   watertight=True   bed   5676 mm2   steep overhang    0.0 mm2   hook ledge  180.5 mm2   flat underside  1120.5 mm2 (span ~60.6)
+  wallplate_entry_side     watertight=True   bed   5676 mm2   steep overhang    0.0 mm2   hook ledge  109.6 mm2   flat underside  1120.5 mm2 (span ~60.6)
+  wallplate_cover_bottom   watertight=True   bed   3475 mm2   steep overhang    0.0 mm2   hook ledge  180.5 mm2   flat underside     0.0 mm2 (span ~0.0)
+  wallplate_cover_side     watertight=True   bed   2123 mm2   steep overhang    0.0 mm2   hook ledge  109.6 mm2   flat underside     0.0 mm2 (span ~0.0)
+  wall_sleeve              watertight=True   bed    968 mm2   steep overhang    0.0 mm2   hook ledge    0.0 mm2   flat underside   397.9 mm2 (span ~53.8)
+  wall_backing_bar         watertight=True   bed    672 mm2   steep overhang    0.0 mm2   hook ledge    0.0 mm2   flat underside    67.9 mm2 (span ~13.0)
+  wall_cut_template        watertight=True   bed  11719 mm2   steep overhang    0.0 mm2   hook ledge    0.0 mm2   flat underside     0.0 mm2 (span ~0.0)
+ALL PASS

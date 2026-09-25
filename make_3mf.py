@@ -1,26 +1,41 @@
 """Build a native Bambu Studio project (H2S, 0.4 nozzle, 0.20 mm) from stl/ via the Bambu Studio CLI.
-Usage:  python make_3mf.py            -> CableRaceway_H2S_PLA.3mf    (Bambu PLA Basic, 3 walls)
-        python make_3mf.py --petg     -> CableRaceway_H2S_PETG.3mf   (Bambu PETG HF, 3 walls; tougher snap legs)
-One project = 1.2 m of run + 2 flat elbows + 1 inside corner + 1 outside corner + 2 end caps.  Duplicate the
-straight plate in Bambu Studio for longer runs.  Everything prints support-free in its exported orientation."""
+Usage:  python make_3mf.py                  -> CableRaceway_H2S_PLA.3mf    (Bambu PLA Basic, 3 walls)
+        python make_3mf.py --petg           -> CableRaceway_H2S_PETG.3mf   (Bambu PETG HF; tougher snap legs)
+        python make_3mf.py --wall           -> WallEntry_H2S_PLA.3mf       (one wall-entry kit)
+        python make_3mf.py --wall --petg    -> WallEntry_H2S_PETG.3mf
+        add --side to a --wall build for the side-entry plate instead of the bottom-entry one.
+Raceway project = 1.2 m of run + 2 flat elbows + 1 inside corner + 1 outside corner + 2 end caps.  Duplicate the
+straight plate in Bambu Studio for longer runs.  Wall-entry kit = one penetration: plate, its matched closed-end
+cover, the drywall sleeve, two backing bars and the cut template.  Everything prints support-free as exported."""
 import os, subprocess, sys, zipfile, re, json, shutil
 
 PETG = "--petg" in sys.argv
+WALL = "--wall" in sys.argv
+SIDE = "--side" in sys.argv
 BS = r"C:\Program Files\Bambu Studio\bambu-studio.exe"
 SYS = os.path.join(os.environ["APPDATA"], "BambuStudio", "system", "BBL")
 MACHINE = os.path.join(SYS, "machine", "Bambu Lab H2S 0.4 nozzle.json")
 PROCESS = os.path.join(SYS, "process", "0.20mm Standard @BBL H2S.json")
 FILAMENT = os.path.join(SYS, "filament", "Bambu PETG HF @BBL H2S.json" if PETG else "Bambu PLA Basic @BBL H2S.json")
-OUT = "CableRaceway_H2S_PETG.3mf" if PETG else "CableRaceway_H2S_PLA.3mf"
+stem = "WallEntry" if WALL else "CableRaceway"
+OUT = f"{stem}_H2S_{'PETG' if PETG else 'PLA'}.3mf"
 
-COUNTS = {                       # copies per project
-    "straight_base_300": 4, "straight_cover_300": 4, "straight_base_150": 1,
-    "elbow_flat_base": 2, "elbow_flat_cover": 2,
-    "corner_inside_cover": 1, "corner_inside_base_stub": 2,
-    "corner_outside_cover": 1, "corner_outside_base_stub": 2,
-    "end_cap": 2,
-}
-BRIM_OBJECTS = {"corner_inside_cover": "5"}   # stands on two 1.6 mm leg edges -> per-object brim; nothing else needs one
+if WALL:
+    v = "side" if SIDE else "bottom"
+    COUNTS = {                   # one wall penetration
+        f"wallplate_entry_{v}": 1, f"wallplate_cover_{v}": 1,
+        "wall_sleeve": 1, "wall_backing_bar": 2, "wall_cut_template": 1,
+    }
+    BRIM_OBJECTS = {}
+else:
+    COUNTS = {                       # copies per project
+        "straight_base_300": 4, "straight_cover_300": 4, "straight_base_150": 1,
+        "elbow_flat_base": 2, "elbow_flat_cover": 2,
+        "corner_inside_cover": 1, "corner_inside_base_stub": 2,
+        "corner_outside_cover": 1, "corner_outside_base_stub": 2,
+        "end_cap": 2,
+    }
+    BRIM_OBJECTS = {"corner_inside_cover": "5"}   # stands on two 1.6 mm leg edges -> per-object brim
 
 here = os.path.dirname(os.path.abspath(__file__)); os.chdir(here)
 pin = os.path.join(here, "plate_in"); shutil.rmtree(pin, ignore_errors=True); os.makedirs(pin)
@@ -70,5 +85,6 @@ for i, p in enumerate(re.findall(r"<plate>(.*?)</plate>", ms, re.S), 1):
     print(f"plate {i}: {len(ids)} objects: {sorted(names.get(x, x) for x in ids)}")
     png = f"Metadata/plate_{i}.png"
     if png in z.namelist():
-        open(os.path.join("previews", f"plate_{i}{'_petg' if PETG else ''}.png"), "wb").write(z.read(png))
+        open(os.path.join("previews", f"{stem.lower()}_plate_{i}{'_petg' if PETG else ''}.png"),
+             "wb").write(z.read(png))
 print(OUT, os.path.getsize(OUT) // 1024, "KB")

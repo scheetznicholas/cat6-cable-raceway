@@ -67,3 +67,61 @@ Cover joints on a long run: cut a straight cover shorter with a hacksaw if a joi
   (flat faces, 0.15/0.2 mm clearances, 1.6 mm sheets) printed fine but felt loose — that is why rev 2 preloads.
 - Filament: set `FLOOR_WINDOWS = False` for a solid base floor (e.g. if you want full-width tape contact);
   it costs about 3.5 cm³ per 300 mm base.  Sheets are 1.2 mm = three 0.4 mm walls, so 2–3 wall loops print them solid.
+
+## Wall-entry kit (run terminates into a stud bay)
+
+Instead of ending a run with an `end_cap`, the run can dump its cables straight through the drywall into the
+bay behind.  The plate *is* a piece of raceway: its front face carries the same outer profile and the same
+absolute snap-ridge heights as a straight base, so stock covers and elbows mate to it flush.  Its floor is
+2.4 mm instead of 1.2 (that floor is the visible face plate), and the floor simply stops over a
+**25 × 44 mm hole** that drops into the wall.
+
+![exploded](previews/wallentry_exploded.png)
+![section](previews/wallentry_section.png)
+
+| | |
+|---|---|
+| face plate | 69.85 × 114.3 mm — standard US single gang, 6 mm corner radius, 0.6 mm chamfer |
+| wall cutout | 54.8 × 92.1 mm — Arlington LV1 low-voltage bracket size, so an off-the-shelf bracket or brush plate fits the same hole later |
+| cable hole | 25 × 44 mm with 14 mm ramps each side (2 mm crest, 14.4 mm still clear under the cover).  44 mm is set by Cat6's 25 mm static bend radius (4 × OD) |
+| sleeve | 60.2 × 97.5 mm lip, 19 mm deep — lines the cut so no cable ever touches cut gypsum.  The lip is **9.6 mm narrower and 16.8 mm shorter than the face plate** (4.83 mm hidden each side, 8.4 top and bottom) and nests in a 0.95 mm groove in the plate's back, so the plate still beds flat on the wall |
+| fixing | two printed backing bars, no studs and no drywall anchors: each passes through the cutout, turns behind the board and clamps 691 mm² of intact gypsum (1382 mm² for the pair) |
+| board | verified on both 1/2 in (12.7 mm) and 5/8 in (15.9 mm) |
+| hardware | 2 × M3 × 30 countersunk + 2 × M3 nuts (nuts are captive in the bars).  On 5/8 in board the screw reaches 24.7 mm, leaving 5.3 mm spare |
+
+### Files
+
+- `WallEntry_H2S_PLA.3mf` / `WallEntry_H2S_PETG.3mf` — one plate, 6 objects: plate, cover, sleeve, 2 bars, template
+- `generate_wallplate.py` — generator; imports `generate_raceway` and reuses its profile so the two can't drift
+- `check_wallplate.py` — solid-boolean fit checks (`check_wallplate.log` = last run, ALL PASS)
+- `render_wallentry.py` — the exploded and section previews above
+- `make_3mf.py --wall` (add `--side` for a side-entry run, `--petg` for PETG) — builds the wall 3MF
+
+### Parts
+
+| part | qty | what it is |
+|---|---|---|
+| wallplate_entry_bottom | 1 | plate for a run arriving from below/above (along the plate's long axis) |
+| wallplate_entry_side | - | same plate for a run arriving from the left/right — build with `--side` instead |
+| wallplate_cover_bottom / _side | 1 | short cover with a **closed end**, trimmed to sit on the 2.4 mm floor |
+| wall_sleeve | 1 | lines the cutout |
+| wall_backing_bar | 2 | the clamp |
+| wall_cut_template | 1 | 109.9 × 154.3 × 1.6 mm; trace the cutout and mark both screw holes |
+
+The kit `end_cap` does **not** fit the plate — the plate's floor is 2.4 mm, so the cap would sit 1.2 mm proud
+and its legs would foul.  Use `wallplate_cover_*`, whose far end is closed, as the end of the run.
+
+### Install
+
+1. Hold `wall_cut_template` on the wall where the run ends, level it, trace the 54.8 × 92.1 mm window and mark
+   the two screw holes 52.5 mm above and below centre.  Check the bay is clear before cutting.
+2. Cut the window (drywall saw) and drill the two 3.4 mm screw holes.
+3. Thread an M3 × 30 countersunk screw through each plate hole and into the nut captive in a backing bar, a
+   few turns only.  Feed each bar diagonally through the cutout, turn it flat behind the board and pull it
+   back against the gypsum — the single rib on the bore side keys it against rotation, and the screw carries it.
+4. Push the sleeve into the cutout from the front, lip against the wall face.
+5. Set the plate over the sleeve (its back groove swallows the lip), then tighten both screws evenly until the
+   bars bite.  Don't overtighten — you're clamping gypsum.
+6. Bring the run in: the last base piece butts to the plate, cables lie over the ramps and drop through the
+   hole into the bay.
+7. Clip the closed-end cover on last; the hole and the screws disappear under it.
